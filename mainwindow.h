@@ -2,10 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QDebug>
 #include <QMessageBox>
+#include <SerialPort.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -22,16 +22,14 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_btnPortsInfo_clicked();
-
     void on_btnOpen_clicked();
 
     void on_btnSend_clicked();
-    void readData();
+    void readData(QByteArray data);
 
 private:
     Ui::MainWindow *ui;
-    QSerialPort *_serialPort;
     void loadPorts();
+    SerialPort _port;
 };
 #endif // MAINWINDOW_H
